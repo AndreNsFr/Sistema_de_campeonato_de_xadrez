@@ -1,4 +1,4 @@
-package classes;
+package model;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -12,7 +12,35 @@ public class Jogador {
     private int empates;
     private int pontuacao;
     // vai ser posto a lista de partidas depois
-    ArrayList<Objects> historico;
+    ArrayList<Partida> historico;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getVitorias() {
+        return vitorias;
+    }
+
+    public int getDerrotas() {
+        return derrotas;
+    }
+
+    public int getEmpates() {
+        return empates;
+    }
+
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public ArrayList<Partida> getHistorico() {
+        return historico;
+    }
 
     public Jogador(String newName){
         this.nome = newName;
@@ -41,12 +69,16 @@ public class Jogador {
     }
 
     // METODO AINDA NÃO FEITO, PRECISA-SE DA CLASSE "PARTIDA PARA FUNCIOANR"
-    public void adicionarPartida(Objects partida){
+    public void adicionarPartida(Partida partida){
         this.historico.add(partida);
     }
 
     public double getTaxaVitoria(){
         return  (double) (this.vitorias + this.derrotas + this.empates) / 10;
+    }
+
+    public void getWinStreak(){
+        this.historico.reversed();
     }
 
     public void debug(){
