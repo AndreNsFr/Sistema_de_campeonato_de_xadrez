@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -77,8 +78,17 @@ public class Jogador {
         return  (double) (this.vitorias + this.derrotas + this.empates) / 10;
     }
 
-    public void getWinStreak(){
-        this.historico.reversed();
+    public int getWinStreak(){
+        Collections.reverse(this.historico);
+        int count = 0;
+        for (Partida partida : historico){
+            if(partida.getVencedor().id == this.id){
+                count++;
+            }else{
+                return count;
+            }
+        }
+        return 0;
     }
 
     public void debug(){

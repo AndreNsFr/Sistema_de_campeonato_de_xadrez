@@ -15,6 +15,18 @@ public class Partida {
     private LocalDateTime data;
     private boolean finalizada;
 
+    public Jogador getJogadorPretas() {
+        return jogadorPretas;
+    }
+
+    public Jogador getJogadorBrancas() {
+        return jogadorBrancas;
+    }
+
+    public boolean getFinalizada(){
+        return this.finalizada;
+    }
+
     public Partida(Jogador newBrancas, Jogador NewPretas){
         this.jogadorBrancas = newBrancas;
         this.jogadorPretas = NewPretas;
@@ -47,5 +59,7 @@ public class Partida {
         }
         return null;
     }
+
+
 
 }
