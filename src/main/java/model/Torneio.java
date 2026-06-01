@@ -21,6 +21,7 @@ public class Torneio {
     public void adicionarJogador(Jogador jogador){
         if(this.statusTorneio == StatusTorneio.AGUARDANDO){
             this.jogadores.add(jogador);
+            return;
         }
         throw new RuntimeException("O torneio já começou ou acabou");
     }
@@ -32,6 +33,7 @@ public class Torneio {
                 this.jogadores.contains(partida.getJogadorPretas())
         ){
             this.partidas.add(partida);
+            return;
         }
         throw new RuntimeException("Partida inválida para registro");
     }
@@ -42,10 +44,13 @@ public class Torneio {
         for(Jogador jogador : this.jogadores){
             jogadas.put(jogador.getVitorias(),jogador);
         }
+        assert !jogadas.isEmpty() : "Sem jogadores";
         return jogadas.get(jogadas.lastKey());
     }
 
-
+    public void encerrar(){
+        this.statusTorneio = StatusTorneio.ENCERRADO;
+    }
 
 
 

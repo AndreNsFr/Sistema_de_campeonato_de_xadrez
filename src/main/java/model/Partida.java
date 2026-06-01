@@ -5,8 +5,7 @@ import Exeptions.PartidaJaFinalizadaExeption;
 
 import java.time.LocalDateTime;
 
-import static Enums.ResultadoPartida.BRANCAS_VENCERAM;
-import static Enums.ResultadoPartida.PRETAS_VENCERAM;
+
 
 public class Partida {
     private Jogador jogadorBrancas;
@@ -31,14 +30,29 @@ public class Partida {
         this.jogadorBrancas = newBrancas;
         this.jogadorPretas = NewPretas;
         this.data = LocalDateTime.now();
+        this.resultado = ResultadoPartida.EM_ANDAMENTO;
         this.finalizada = false;
     }
 
     public void finalizarPartida(ResultadoPartida resultado){
-        if(!this.finalizada){
+        if(!this.finalizada && resultado != ResultadoPartida.EM_ANDAMENTO){
+
+            if(resultado == ResultadoPartida.PRETAS_VENCERAM){
+                this.jogadorPretas.registrarVitoria();
+                this.jogadorBrancas.registrarDerrota();
+            } else if (resultado == ResultadoPartida.BRANCAS_VENCERAM) {
+                this.jogadorPretas.registrarDerrota();
+                this.jogadorBrancas.registrarVitoria();
+            }else {
+                this.jogadorBrancas.registrarEmpate();
+                this.jogadorPretas.registrarEmpate();
+            }
+
+            this.resultado = resultado;
             this.finalizada = true;
+            return;
         }
-        throw new PartidaJaFinalizadaExeption("Essa partida já foi finalizada");
+        throw new PartidaJaFinalizadaExeption("Essa partida não pode ser finalizada");
     }
 
     public void exibirResumo(){
@@ -52,9 +66,9 @@ public class Partida {
     }
 
     public Jogador getVencedor(){
-        if(this.resultado == BRANCAS_VENCERAM) {
+        if(this.resultado == ResultadoPartida.BRANCAS_VENCERAM) {
             return this.jogadorBrancas;
-        } else if (this.resultado == PRETAS_VENCERAM) {
+        } else if (this.resultado == ResultadoPartida.PRETAS_VENCERAM) {
             return this.jogadorPretas;
         }
         return null;

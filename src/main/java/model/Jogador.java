@@ -69,7 +69,10 @@ public class Jogador {
 
     }
 
-    // METODO AINDA NÃO FEITO, PRECISA-SE DA CLASSE "PARTIDA PARA FUNCIOANR"
+    public void registrarEmpate(){
+        this.empates += 1;
+    }
+
     public void adicionarPartida(Partida partida){
         this.historico.add(partida);
     }
@@ -91,16 +94,18 @@ public class Jogador {
         return 0;
     }
 
-    public void debug(){
+    public void resumo(){
+        System.out.println("--------------------------------------------------------------------");
         System.out.println("Id:" + this.id);
         System.out.println("Nome:" + this.nome);
         System.out.println("Pontuação:" + this.pontuacao);
         System.out.println("Vitórias:" + this.vitorias);
         System.out.println("Derrotas:" + this.derrotas);
         System.out.println("Empates:" + this.empates);
-
-        for(Object i : this.historico){
-            System.out.println("é para parecer aqui as partida");
+        System.out.println("Histórico de partidas:");
+        for(Partida partida : this.historico){
+            partida.exibirResumo();
         }
+        System.out.println("--------------------------------------------------------------------");
     }
 }
