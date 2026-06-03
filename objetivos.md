@@ -34,7 +34,7 @@ Construir um sistema orientado a objetos com regras reais de domínio para geren
 
 ```
 src/
-├── model/          ← Jogador, Partida, Torneio
+├── models/          ← Jogador, Partida, Torneio
 ├── service/        ← EloService, TorneioService, RankingService
 ├── enums/          ← ResultadoPartida, StatusTorneio
 ├── util/           ← Formatador, helpers de exibição
@@ -46,7 +46,7 @@ src/
 
 ## Modelo de domínio
 
-### `Jogador` — `model/`
+### `Jogador` — `models/`
 
 Entidade central. Carrega identidade, estatísticas e histórico próprio.
 
@@ -75,7 +75,7 @@ Entidade central. Carrega identidade, estatísticas e histórico próprio.
 
 ---
 
-### `Partida` — `model/`
+### `Partida` — `models/`
 
 Representa um confronto entre dois jogadores. Não contém lógica de pontuação — apenas transporta dados.
 
@@ -99,7 +99,7 @@ Representa um confronto entre dois jogadores. Não contém lógica de pontuaçã
 
 ---
 
-### `Torneio` — `model/`
+### `Torneio` — `models/`
 
 Orquestrador de jogadores e partidas. Deve delegar cálculos para serviços — não acumular lógica internamente.
 
@@ -206,7 +206,7 @@ Orquestra criação e ciclo de vida de torneios.
 - `Stream` com `sorted()`, `filter()`, `max()`, `limit()`
 - `Comparator` para ordenação de ranking
 - Encapsulamento: nenhum atributo público
-- Separação em pacotes: `model`, `service`, `enums`, `util`, `exception`
+- Separação em pacotes: `models`, `service`, `enums`, `util`, `exception`
 - Exceções de domínio próprias (ex.: `PartidaJaFinalizadaException`)
 
 ---
@@ -218,7 +218,7 @@ Orquestra criação e ciclo de vida de torneios.
 - Métodos com mais de ~25 linhas
 - Código duplicado — extraia num método ou serviço
 - `null` como retorno onde `Optional` resolve
-- Camadas misturadas: `model` não chama `service`
+- Camadas misturadas: `models` não chama `service`
 
 ---
 
@@ -262,4 +262,4 @@ Emparelhar jogadores automaticamente por ELO sem repetir confrontos já realizad
 - Responsabilidade única: classes que fazem uma coisa e fazem bem
 - Streams e coleções: manipulação expressiva sem loops manuais
 - Exceções de domínio: comunicar erros de negócio com clareza
-- Arquitetura em camadas: model não conhece service, Main não conhece domínio
+- Arquitetura em camadas: models não conhece service, Main não conhece domínio

@@ -1,4 +1,4 @@
-package model;
+package models;
 
 import Enums.ResultadoPartida;
 import Exeptions.PartidaJaFinalizadaExeption;
@@ -70,6 +70,15 @@ public class Partida {
             return this.jogadorBrancas;
         } else if (this.resultado == ResultadoPartida.PRETAS_VENCERAM) {
             return this.jogadorPretas;
+        }
+        return null;
+    }
+
+    public Jogador getPerdedor(){
+        if(this.resultado == ResultadoPartida.BRANCAS_VENCERAM) {
+            return this.jogadorPretas;
+        } else if (this.resultado == ResultadoPartida.PRETAS_VENCERAM) {
+            return this.jogadorBrancas;
         }
         return null;
     }

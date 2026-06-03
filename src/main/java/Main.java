@@ -1,7 +1,7 @@
 import Enums.ResultadoPartida;
-import model.Jogador;
-import model.Partida;
-import model.Torneio;
+import models.Jogador;
+import models.Partida;
+import models.Torneio;
 
 public class Main {
     public static void main(String[] args) {
